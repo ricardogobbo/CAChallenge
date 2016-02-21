@@ -24,9 +24,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
 
-        <!--<wildfly.management.username>admin</wildfly.management.username>
-        <wildfly.management.password>admin</wildfly.management.password>
-        <wildfly.management.port>9990</wildfly.management.port>-->
     </properties>
 
 
@@ -47,7 +44,7 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>jaxrs-api</artifactId>
-            <scope>provided</scope>
+            <scope>provided,test</scope>
         </dependency>
 
         <!-- Needed for running tests (you may also use TestNG) -->
@@ -82,22 +79,12 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
-                <!--<configuration>
-                    <hostname>localhost</hostname>
-                    <username>${wildfly.management.username}</username>
-                    <password>${wildfly.management.password}</password>
-                    <port>${wildfly.management.port}</port>
-                </configuration>-->
             </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
-            <!-- The default profile skips all tests, though you can tune it to run 
-                just unit tests based on a custom pattern -->
-            <!-- Seperate profiles are provided for running all tests, including Arquillian 
-                tests that execute in the specified container -->
             <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -107,9 +94,6 @@
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${version.surefire.plugin}</version>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

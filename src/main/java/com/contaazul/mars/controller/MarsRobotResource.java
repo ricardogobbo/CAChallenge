@@ -13,7 +13,7 @@ public class MarsRobotResource {
 
     @POST
     @Path("/{command}")
-    public Response moveGetRobot(@PathParam("command") String command) {
+    public Response moveRobot(@PathParam("command") String command) {
         RobotHandlerService robotHandlerService =
                 new RobotHandlerServiceFactory().createRobotHandlerService();
         try {

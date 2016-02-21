@@ -4,31 +4,28 @@
 
 * Java SDK 8.0
 * Maven 3.1 ou mais atual
+* `JAVA_HOME` configurado com a JDK
+* `JAVA_HOME\bin` e `MAVEN_HOME\bin` incluÃ­das na variÃ¡vel PATH
 
-## Teste
 
-Para executar os testes, execute o seguinte comando
+## Executando o Projeto
 
-`mvn clean compile test`
-
-## Executando o Wildfly
-
-Para inicializar o servidor Wildfly 10.0.0-Final, basta executar o seguinte comando:
+Para inicializar o projeto, resolver as dependÃªncias e configurar o servidor Wildfly 10.0.0-Final, basta executar o seguinte comando:
 
 `mvn wildfly:start`
 
-Todas as dependências necessárias serão automaticamente configuradas pelo Maven.
+Todas as dependÃªncias necessÃ¡rias serÃ£o automaticamente configuradas pelo Maven.
 
-Com o servidor online, execute o seguinte comando para Deploy
+Com as dependÃªncais resolvidas e o servidor configurado, execute o seguinte comando para iniciar o servidor e realizar o deploy
 
-`mvn package wildfly:deploy`
+`mvn wildfly:run`
 
 ## Utilizando a API REST
 
-Após realizar a inicialização do servidor e o deploy da aplicação, você será capaz de utilizar a API REST desenvolvida para este desafio.
+ApÃ³s realizar a inicializaÃ§Ã£o do servidor e o deploy da aplicaÃ§Ã£o, vocÃª serÃ¡ capaz de utilizar a API REST desenvolvida para este desafio.
 
-Para solicitar a nova posição do robô, execute o seguinte comando via command line:
+Para solicitar a nova posiÃ§Ã£o do robÃ´, execute o seguinte comando via command line:
 
 `curl -s --request POST http://localhost:8080/rest/mars/{COMMAND}`
 
-`{COMMAND}` deve ser substituido pelo comando dado ao robô de acordo com a especificação do requisito.
+`{COMMAND}` deve ser substituido pelo comando dado ao robÃ´ de acordo com a especificaÃ§Ã£o do requisito.

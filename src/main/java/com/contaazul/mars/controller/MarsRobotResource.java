@@ -23,7 +23,6 @@ public class MarsRobotResource {
                     .entity(robotHandlerService.getRobot())
                     .build();
         }catch (Exception e){
-            e.printStackTrace();
             return Response.status(400)
                     .type(MediaType.TEXT_PLAIN_TYPE)
                     .entity("400 Bad Request")

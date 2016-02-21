@@ -44,7 +44,6 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>jaxrs-api</artifactId>
-            <scope>provided,test</scope>
         </dependency>
 
         <!-- Needed for running tests (you may also use TestNG) -->

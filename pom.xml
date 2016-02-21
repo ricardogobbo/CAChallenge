@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.contaazul.mars</groupId>
+    <artifactId>mars</artifactId>
+    <version>0.1</version>
+    <packaging>war</packaging>
+    <name>Conta Azul Challenge</name>
+    <description>Conta Azul Challenge for Software Engineer Position.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+
+        <version.jboss.bom>8.2.1.Final</version.jboss.bom>
+
+        <version.compiler.plugin>3.1</version.compiler.plugin>
+        <version.surefire.plugin>2.16</version.surefire.plugin>
+        <version.war.plugin>2.5</version.war.plugin>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!--<wildfly.management.username>admin</wildfly.management.username>
+        <wildfly.management.password>admin</wildfly.management.password>
+        <wildfly.management.port>9990</wildfly.management.port>-->
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Needed for running tests (you may also use TestNG) -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
+    </dependencies>
+
+    <build>
+        <!-- Maven will append the version to the finalName (which is the name 
+            given to the generated war, and hence the context root) -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.war.plugin}</version>
+                <configuration>
+
+                    <!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- The WildFly plugin deploys your war to a local WildFly container -->
+            <!-- To use, run: mvn package wildfly:deploy -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+                <!--<configuration>
+                    <hostname>localhost</hostname>
+                    <username>${wildfly.management.username}</username>
+                    <password>${wildfly.management.password}</password>
+                    <port>${wildfly.management.port}</port>
+                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- The default profile skips all tests, though you can tune it to run 
+                just unit tests based on a custom pattern -->
+            <!-- Seperate profiles are provided for running all tests, including Arquillian 
+                tests that execute in the specified container -->
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${version.surefire.plugin}</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+
+
+
+
+
+    </profiles>
+</project>

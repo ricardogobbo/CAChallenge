@@ -2,7 +2,8 @@
 
 ## Requisitos do Sistema
 
-* Java SDK 8.0
+* Windows 7 Home Premium x64
+* Java SDK 8.0 update 73
 * Maven 3.1 ou mais atual
 * `JAVA_HOME` configurado com a JDK
 * `JAVA_HOME\bin` e `MAVEN_HOME\bin` incluídas na variável PATH
